@@ -43,16 +43,14 @@ class MainViewController: UIViewController {
     }
     
     public func getCoords(_ zip: String){
-        ZipCodeHelper.getLatLong(fromZipCode: zip) { [weak self] (result) in
+        ZipCodeHelper.getLatLongName(fromZipCode: zip) { [weak self] (result) in
             switch result{
             case .failure(let zipError):
                 print("get error: \(zipError)")
             case .success(let coordinates):
                 self?.getForecasts(lat: coordinates.lat, long: coordinates.long)
-                DispatchQueue.main.async {
-     //               self?.weatherSearchView.cityNameLabel.text = coordinates.placeName
-     //               self?.loadPhotoData(photo: coordinates.placeName)
-                }
+                self?.cityLabel.text = "Weather for \(coordinates.placeName)"
+                print(coordinates)
             }
         }
     }
@@ -62,8 +60,8 @@ class MainViewController: UIViewController {
             case .failure(let appError):
                 print("getWeather error: \(appError)")
             case .success(let dailyForecast):
+                print("success")
                 self?.weekForecasts = dailyForecast
-            
                 }
             }
     
