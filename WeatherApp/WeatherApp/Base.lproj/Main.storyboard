@@ -11,7 +11,7 @@
         <!--Search-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="WeatherApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,55 +32,59 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cLq-uZ-eZw">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="weatherCell" id="cLq-uZ-eZw" customClass="WeatherCVC" customModule="WeatherApp" customModuleProvider="target">
                                         <rect key="frame" x="79.5" y="0.0" width="255" height="184"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tMj-0b-yX3">
                                             <rect key="frame" x="0.0" y="0.0" width="255" height="184"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weatherLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVv-eG-Fj5">
-                                                    <rect key="frame" x="8" y="8" width="239" height="28"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="weatherLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVt-44-aSV">
+                                                    <rect key="frame" x="8" y="8" width="239" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l3P-Jg-8V6">
-                                                    <rect key="frame" x="79" y="44" width="97" height="88"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="88" id="3v6-GC-upo"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xL9-gJ-kc7">
+                                                    <rect key="frame" x="88" y="42" width="80" height="86"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hiLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8t7-Ws-ZTg">
-                                                    <rect key="frame" x="8" y="140" width="239" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hiLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDL-hl-tqq">
+                                                    <rect key="frame" x="8" y="136" width="239" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lowLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrI-sb-0br">
-                                                    <rect key="frame" x="8" y="162" width="239" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="sadLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0i-oq-wK3">
+                                                    <rect key="frame" x="8" y="161" width="239" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="BVv-eG-Fj5" secondAttribute="trailing" constant="8" id="4Mb-f0-HbL"/>
-                                                <constraint firstItem="l3P-Jg-8V6" firstAttribute="top" secondItem="BVv-eG-Fj5" secondAttribute="bottom" constant="8" id="5eD-dL-3YU"/>
-                                                <constraint firstItem="lrI-sb-0br" firstAttribute="leading" secondItem="tMj-0b-yX3" secondAttribute="leading" constant="8" id="8sL-XC-9dh"/>
-                                                <constraint firstItem="8t7-Ws-ZTg" firstAttribute="leading" secondItem="tMj-0b-yX3" secondAttribute="leading" constant="8" id="9bB-AX-AC9"/>
-                                                <constraint firstItem="l3P-Jg-8V6" firstAttribute="centerX" secondItem="8t7-Ws-ZTg" secondAttribute="centerX" id="D8e-un-ELb"/>
-                                                <constraint firstItem="l3P-Jg-8V6" firstAttribute="leading" secondItem="tMj-0b-yX3" secondAttribute="leading" constant="79" id="Dtv-VJ-gLr"/>
-                                                <constraint firstAttribute="trailing" secondItem="8t7-Ws-ZTg" secondAttribute="trailing" constant="8" id="QzX-sa-crZ"/>
-                                                <constraint firstItem="lrI-sb-0br" firstAttribute="top" secondItem="8t7-Ws-ZTg" secondAttribute="bottom" constant="5" id="SdL-tj-2nK"/>
-                                                <constraint firstAttribute="bottom" secondItem="lrI-sb-0br" secondAttribute="bottom" constant="5" id="YTc-Cm-tlg"/>
-                                                <constraint firstItem="8t7-Ws-ZTg" firstAttribute="top" secondItem="l3P-Jg-8V6" secondAttribute="bottom" constant="8" id="fbf-e5-kDB"/>
-                                                <constraint firstAttribute="trailing" secondItem="lrI-sb-0br" secondAttribute="trailing" constant="8" id="gQs-I5-j7v"/>
-                                                <constraint firstItem="BVv-eG-Fj5" firstAttribute="top" secondItem="tMj-0b-yX3" secondAttribute="top" constant="8" id="mww-n7-Zfr"/>
-                                                <constraint firstItem="BVv-eG-Fj5" firstAttribute="leading" secondItem="tMj-0b-yX3" secondAttribute="leading" constant="8" id="ofb-eZ-Rbm"/>
+                                                <constraint firstItem="xL9-gJ-kc7" firstAttribute="top" secondItem="OVt-44-aSV" secondAttribute="bottom" constant="8" id="7q8-N0-IPu"/>
+                                                <constraint firstItem="xL9-gJ-kc7" firstAttribute="leading" secondItem="tMj-0b-yX3" secondAttribute="leading" constant="88" id="E14-N5-6cC"/>
+                                                <constraint firstItem="xL9-gJ-kc7" firstAttribute="height" secondItem="tMj-0b-yX3" secondAttribute="height" multiplier="0.467391" id="G52-Ql-Y0K"/>
+                                                <constraint firstAttribute="trailing" secondItem="NDL-hl-tqq" secondAttribute="trailing" constant="8" id="VAM-1U-7ni"/>
+                                                <constraint firstItem="K0i-oq-wK3" firstAttribute="leading" secondItem="tMj-0b-yX3" secondAttribute="leading" constant="8" id="cgg-nv-4kR"/>
+                                                <constraint firstAttribute="trailing" secondItem="OVt-44-aSV" secondAttribute="trailing" constant="8" id="fJ4-9T-a63"/>
+                                                <constraint firstItem="NDL-hl-tqq" firstAttribute="leading" secondItem="tMj-0b-yX3" secondAttribute="leading" constant="8" id="iEG-0e-qwG"/>
+                                                <constraint firstAttribute="trailing" secondItem="K0i-oq-wK3" secondAttribute="trailing" constant="8" id="l6C-0L-hHp"/>
+                                                <constraint firstAttribute="trailing" secondItem="xL9-gJ-kc7" secondAttribute="trailing" constant="87" id="nMN-E5-Gd7"/>
+                                                <constraint firstItem="K0i-oq-wK3" firstAttribute="top" secondItem="NDL-hl-tqq" secondAttribute="bottom" constant="8" id="nmb-5S-c6u"/>
+                                                <constraint firstItem="OVt-44-aSV" firstAttribute="top" secondItem="tMj-0b-yX3" secondAttribute="top" constant="8" id="qQX-Xd-iBa"/>
+                                                <constraint firstItem="OVt-44-aSV" firstAttribute="leading" secondItem="tMj-0b-yX3" secondAttribute="leading" constant="8" id="vhv-t2-8Lf"/>
+                                                <constraint firstItem="NDL-hl-tqq" firstAttribute="top" secondItem="xL9-gJ-kc7" secondAttribute="bottom" constant="8" id="vpB-h4-SM5"/>
+                                                <constraint firstAttribute="bottom" secondItem="K0i-oq-wK3" secondAttribute="bottom" constant="6" id="zdt-2T-kgW"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="255" height="184"/>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="OVt-44-aSV" id="hXH-9p-tUm"/>
+                                            <outlet property="hiLabel" destination="NDL-hl-tqq" id="oEG-dl-LB6"/>
+                                            <outlet property="lowLabel" destination="K0i-oq-wK3" id="oyi-KG-uyk"/>
+                                            <outlet property="weatherImage" destination="xL9-gJ-kc7" id="rvT-dx-YxQ"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
@@ -115,6 +119,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="Y1s-Nf-qFR"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="TVT-6C-4AE" id="ZX2-yk-jBk"/>
+                        <outlet property="collectionView" destination="SKd-Wy-GLZ" id="GBK-Yx-YOY"/>
+                        <outlet property="zipTextField" destination="nYn-l3-wwk" id="lN2-Ed-Kga"/>
+                        <outlet property="zipcodeLabel" destination="lmr-aR-kbg" id="qDp-LG-Ari"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
