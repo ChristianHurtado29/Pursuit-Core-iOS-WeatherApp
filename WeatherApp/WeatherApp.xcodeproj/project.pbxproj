@@ -11,6 +11,9 @@
 		130ED4E123E8D9FB00262FC9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130ED4E023E8D9FB00262FC9 /* APIClient.swift */; };
 		130ED4E423E8DA5F00262FC9 /* ImageKit in Frameworks */ = {isa = PBXBuildFile; productRef = 130ED4E323E8DA5F00262FC9 /* ImageKit */; };
 		130ED4E623E8DC8F00262FC9 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130ED4E523E8DC8F00262FC9 /* Weather.swift */; };
+		1343D0D423EA0EC200CFC68E /* WeatherTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1343D0D323EA0EC200CFC68E /* WeatherTabController.swift */; };
+		1343D0D623EA0F7400CFC68E /* FavesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1343D0D523EA0F7400CFC68E /* FavesViewController.swift */; };
+		1343D0D823EA116A00CFC68E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1343D0D723EA116A00CFC68E /* DetailViewController.swift */; };
 		548CE052234D33B500B5177D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE051234D33B500B5177D /* AppDelegate.swift */; };
 		548CE054234D33B500B5177D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE053234D33B500B5177D /* SceneDelegate.swift */; };
 		548CE056234D33B500B5177D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE055234D33B500B5177D /* MainViewController.swift */; };
@@ -24,6 +27,9 @@
 		130ED4DE23E8CA9D00262FC9 /* WeatherCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCVC.swift; sourceTree = "<group>"; };
 		130ED4E023E8D9FB00262FC9 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		130ED4E523E8DC8F00262FC9 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		1343D0D323EA0EC200CFC68E /* WeatherTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTabController.swift; sourceTree = "<group>"; };
+		1343D0D523EA0F7400CFC68E /* FavesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavesViewController.swift; sourceTree = "<group>"; };
+		1343D0D723EA116A00CFC68E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		548CE04E234D33B500B5177D /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		548CE051234D33B500B5177D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		548CE053234D33B500B5177D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,10 +75,13 @@
 				548CE051234D33B500B5177D /* AppDelegate.swift */,
 				548CE053234D33B500B5177D /* SceneDelegate.swift */,
 				548CE065234D33E600B5177D /* ZipCodeHelper.swift */,
+				1343D0D323EA0EC200CFC68E /* WeatherTabController.swift */,
+				1343D0D523EA0F7400CFC68E /* FavesViewController.swift */,
 				130ED4E023E8D9FB00262FC9 /* APIClient.swift */,
 				130ED4E523E8DC8F00262FC9 /* Weather.swift */,
 				548CE055234D33B500B5177D /* MainViewController.swift */,
 				130ED4DE23E8CA9D00262FC9 /* WeatherCVC.swift */,
+				1343D0D723EA116A00CFC68E /* DetailViewController.swift */,
 				548CE057234D33B500B5177D /* Main.storyboard */,
 				548CE05C234D33B600B5177D /* LaunchScreen.storyboard */,
 				548CE067234D340700B5177D /* Assets.xcassets */,
@@ -158,11 +167,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1343D0D423EA0EC200CFC68E /* WeatherTabController.swift in Sources */,
 				548CE066234D33E600B5177D /* ZipCodeHelper.swift in Sources */,
 				130ED4DF23E8CA9D00262FC9 /* WeatherCVC.swift in Sources */,
 				548CE056234D33B500B5177D /* MainViewController.swift in Sources */,
 				548CE052234D33B500B5177D /* AppDelegate.swift in Sources */,
+				1343D0D623EA0F7400CFC68E /* FavesViewController.swift in Sources */,
 				548CE054234D33B500B5177D /* SceneDelegate.swift in Sources */,
+				1343D0D823EA116A00CFC68E /* DetailViewController.swift in Sources */,
 				130ED4E123E8D9FB00262FC9 /* APIClient.swift in Sources */,
 				130ED4E623E8DC8F00262FC9 /* Weather.swift in Sources */,
 			);

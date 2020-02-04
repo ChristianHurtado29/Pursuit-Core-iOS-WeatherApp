@@ -21,9 +21,10 @@ struct Daily: Codable {
 struct Data: Codable {
     let summary: String
     let time: Int
-    let sunriseTime: Int?
-    let sunsetTime: Int?
+    let sunriseTime: Int
+    let sunsetTime: Int
     let icon: String
+    let windSpeed: Double
     let precipType: String
     let temperatureHigh: Double
     let temperatureLow: Double

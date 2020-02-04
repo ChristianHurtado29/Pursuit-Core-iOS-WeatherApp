@@ -17,8 +17,8 @@ class WeatherCVC: UICollectionViewCell {
     
     func configureCell(for data: Data){
         dateLabel.text = data.time.description
-        hiLabel.text = data.temperatureHigh.description
-        lowLabel.text = data.temperatureLow.description
+        hiLabel.text = "High: \(data.temperatureHigh.description)°F"
+        lowLabel.text = "Low: \(data.temperatureLow.description)°F"
         if data.temperatureHigh > 60.0 && data.temperatureHigh <= 74.9 {
             backgroundColor = .green
         } else if data.temperatureHigh > 75.0 && data.temperatureHigh <= 84.9 {

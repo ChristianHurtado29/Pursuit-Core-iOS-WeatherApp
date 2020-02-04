@@ -43,6 +43,14 @@ class MainViewController: UIViewController {
         zipTextField.delegate = self
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailedVC = segue.destination as? DetailViewController, let indexPath = collectionView.indexPathsForSelectedItems?.first else {
+            fatalError("Could not segue Country")
+        }
+        detailedVC.cityname = cityName
+        detailedVC.forecast = weekForecasts[indexPath.row]
+    }
+    
 //    override func viewDidAppear(_ animated: Bool) {
 //        super.viewDidAppear(true)
 //        if weekForecasts.first?.temperatureHigh ?? 65.0 > 80.0 {
@@ -62,6 +70,7 @@ class MainViewController: UIViewController {
             case .success(let coordinates):
                 self?.getForecasts(lat: coordinates.lat, long: coordinates.long)
                 self?.cityLabel.text = "Weather for \(coordinates.placeName)"
+                self?.cityName = coordinates.placeName
                 print("this is the \(coordinates) information")
             }
         }
