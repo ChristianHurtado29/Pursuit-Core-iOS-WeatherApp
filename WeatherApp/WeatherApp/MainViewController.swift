@@ -13,18 +13,21 @@ class MainViewController: UIViewController {
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var zipcodeLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet weak var zipTextField: UITextField!
+    
+    @IBOutlet weak var backgroundImgView: UIImageView!
+    
     
     var cityName = ""
     
     private var zipCode = String() {
         didSet {
             getCoords(zipCode)
+            print(zipCode)
         }
     }
     
-    var weekForecasts = [Daily](){
+    var weekForecasts = [Data](){
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -32,15 +35,24 @@ class MainViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         cityLabel.text = "Forecast for: "
         zipcodeLabel.text = "Please enter your zipcode"
         collectionView.dataSource = self
         zipTextField.delegate = self
-        
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//        if weekForecasts.first?.temperatureHigh ?? 65.0 > 80.0 {
+//            backgroundImgView.image = UIImage(named: "beach")
+//        } else if weekForecasts.first!.temperatureHigh ?? 65.0 < 32 {
+//            backgroundImgView.image = UIImage(named: "cold")
+//        } else {
+//            backgroundImgView.image = UIImage(named: "spring")
+//        }
+//    }
     
     public func getCoords(_ zip: String){
         ZipCodeHelper.getLatLongName(fromZipCode: zip) { [weak self] (result) in
@@ -50,7 +62,7 @@ class MainViewController: UIViewController {
             case .success(let coordinates):
                 self?.getForecasts(lat: coordinates.lat, long: coordinates.long)
                 self?.cityLabel.text = "Weather for \(coordinates.placeName)"
-                print(coordinates)
+                print("this is the \(coordinates) information")
             }
         }
     }
@@ -58,25 +70,14 @@ class MainViewController: UIViewController {
             WeatherAPI.getForecast(lat: lat, long: long) { [weak self] (result) in
             switch result {
             case .failure(let appError):
-                print("getWeather error: \(appError)")
+                print("get weather error: \(appError)")
             case .success(let dailyForecast):
                 print("success")
                 self?.weekForecasts = dailyForecast
-                }
+                dump(dailyForecast)
             }
-    
-    //    func getName(for zip: String) {
-    //        ZipCodeHelper.getLatLongName(fromZipCode: zip, completionHandler: {[weak self] (result) in
-    //        switch result {
-    //        case .failure( let appError ):
-    //            print("Error \(appError)")
-    //        case .success( let name):
-    //            self?.cityName = name
-    //           dump(name)
-    //            }
-    //        })
-    //    }
-            }
+        }
+    }
 }
             
 
@@ -86,18 +87,13 @@ extension MainViewController: UICollectionViewDataSource{
         weekForecasts.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "weatherCell", for: indexPath) as? WeatherCVC else {
             fatalError("Could not type cast reusable cell")
         }
         let forecast = weekForecasts[indexPath.row]
-        cell.dateLabel.text = weekForecasts.first?.data.first?.time.description
-        cell.hiLabel.text = "High: \(weekForecasts.first?.data.first?.temperatureHigh.description)"
-        cell.lowLabel.text = "Low: \(weekForecasts.first?.data.first?.temperatureLow.description)"
-        
-        cell.backgroundColor = .gray
-        return cell
+        cell.configureCell(for: forecast)
+                return cell
     }
     
 }

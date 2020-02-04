@@ -15,14 +15,14 @@ struct Weather: Codable {
 }
 
 struct Daily: Codable {
-    let summary: String
     let data: [Data]
 }
 
 struct Data: Codable {
+    let summary: String
     let time: Int
-    let sunriseTime: Int
-    let sunsetTime: Int
+    let sunriseTime: Int?
+    let sunsetTime: Int?
     let icon: String
     let precipType: String
     let temperatureHigh: Double
