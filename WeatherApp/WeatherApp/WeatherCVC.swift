@@ -16,7 +16,7 @@ class WeatherCVC: UICollectionViewCell {
     @IBOutlet weak var weatherImage: UIImageView!
     
     func configureCell(for data: Data){
-        dateLabel.text = data.time.description
+        dateLabel.text = data.time.convertDate()
         hiLabel.text = "High: \(data.temperatureHigh.description)°F"
         lowLabel.text = "Low: \(data.temperatureLow.description)°F"
         if data.temperatureHigh > 60.0 && data.temperatureHigh <= 74.9 {
@@ -28,7 +28,7 @@ class WeatherCVC: UICollectionViewCell {
         } else if data.temperatureHigh <= 32.0 {
             backgroundColor = . blue
         } else {
-            backgroundColor = .lightGray
+            backgroundColor = .systemTeal
         }
         weatherImage.image = UIImage(named: data.icon)
     }

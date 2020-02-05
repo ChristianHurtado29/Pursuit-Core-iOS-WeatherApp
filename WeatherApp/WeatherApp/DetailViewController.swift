@@ -25,6 +25,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var windLabel: UILabel!
     @IBOutlet weak var precipLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     
     override func viewDidLoad() {
@@ -34,10 +35,11 @@ class DetailViewController: UIViewController {
         summaryLabel.backgroundColor = .lightGray
         highLabel.text = "High: \(forecast?.temperatureHigh ?? 80.0)°F"
         lowLabel.text = "Low: \(forecast?.temperatureLow ?? 40.0)°F"
-        riseLabel.text = "Sunrise at: \(forecast?.sunriseTime ?? 6)"
-        setLabel.text = "Sunset at: \(forecast?.sunsetTime ?? 7)"
+        riseLabel.text = "Sunrise at: \(forecast?.sunriseTime.convertTime() ?? "6 am")"
+        setLabel.text = "Sunset at: \(forecast?.sunsetTime.convertTime() ?? "7 pm")"
         windLabel.text = "Wind at: \(forecast?.windSpeed ?? 5.5) mph"
         precipLabel.text = "Precipitation at: \(forecast?.precipType ?? "4.3")"
+        backgroundImageView.image = UIImage(named: cityname ?? "weather")
         
         PicturesAPI.loadPictures(for: cityname ?? "New York") { (result) in
             switch result {

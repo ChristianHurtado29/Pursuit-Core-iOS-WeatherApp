@@ -11,17 +11,17 @@ import UIKit
 import NetworkHelper
 
 struct PicturesAPI {
-
-static func loadPictures(for searchQuery: String,
-                          completion: @escaping (Result<[Pictures], AppError>) -> ()) {
-        
-    let apiKey = "14968421-bdbbdb0f044ae1bfcb38ea89d&q"
     
+    static func loadPictures(for searchQuery: String,
+                             completion: @escaping (Result<[Pictures], AppError>) -> ()) {
+        
+        let apiKey = "14968421-bdbbdb0f044ae1bfcb38ea89d&q"
+        
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "yellow"
         
-    let picturesEndpointURL = "https://pixabay.com/api/?key=\(apiKey)=\(searchQuery.lowercased())&image_type=photo"
+        let picturesEndpointURL = "https://pixabay.com/api/?key=\(apiKey)=\(searchQuery.lowercased())&image_type=photo"
         
-            guard let url = URL(string: picturesEndpointURL) else {
+        guard let url = URL(string: picturesEndpointURL) else {
             completion(.failure(.badURL(picturesEndpointURL)))
             return
         }

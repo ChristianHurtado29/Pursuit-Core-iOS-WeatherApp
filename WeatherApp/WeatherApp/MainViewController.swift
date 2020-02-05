@@ -18,7 +18,11 @@ class MainViewController: UIViewController {
     @IBOutlet weak var backgroundImgView: UIImageView!
     
     
-    var cityName = ""
+    var cityName = String() {
+        didSet {
+            backgroundImg()
+        }
+    }
     
     private var zipCode = String() {
         didSet {
@@ -37,10 +41,21 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cityLabel.text = "Forecast for: "
+        collectionView.backgroundColor = .gray
+        collectionView.alpha = CGFloat(0.7)
+        cityLabel.text = ""
         zipcodeLabel.text = "Please enter your zipcode"
+        zipcodeLabel.backgroundColor = .lightGray
+        zipcodeLabel.alpha = CGFloat(0.79)
         collectionView.dataSource = self
         zipTextField.delegate = self
+        backgroundImgView.image = #imageLiteral(resourceName: "weatherBack")
+        backgroundImg()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(true)
+        backgroundImg()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -51,16 +66,19 @@ class MainViewController: UIViewController {
         detailedVC.forecast = weekForecasts[indexPath.row]
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(true)
-//        if weekForecasts.first?.temperatureHigh ?? 65.0 > 80.0 {
-//            backgroundImgView.image = UIImage(named: "beach")
-//        } else if weekForecasts.first!.temperatureHigh ?? 65.0 < 32 {
-//            backgroundImgView.image = UIImage(named: "cold")
-//        } else {
-//            backgroundImgView.image = UIImage(named: "spring")
-//        }
-//    }
+    func backgroundImg(){
+        if cityName == "New York"{
+            backgroundImgView.image = UIImage(named: "New York")
+        } else if cityName == "Miami"{
+            backgroundImgView.image = UIImage(named: "Miami")
+        } else if cityName == "Seattle"{
+        backgroundImgView.image = UIImage(named: "Seattle")
+        } else if cityName == "Los Angeles"{
+            backgroundImgView.image = UIImage(named: "Los Angeles")
+        }   else {
+            backgroundImgView.image = #imageLiteral(resourceName: "weatherBack")
+        }
+}
     
     public func getCoords(_ zip: String){
         ZipCodeHelper.getLatLongName(fromZipCode: zip) { [weak self] (result) in
@@ -69,7 +87,7 @@ class MainViewController: UIViewController {
                 print("get error: \(zipError)")
             case .success(let coordinates):
                 self?.getForecasts(lat: coordinates.lat, long: coordinates.long)
-                self?.cityLabel.text = "Weather for \(coordinates.placeName)"
+                self?.cityLabel.text = "This week in \(coordinates.placeName)"
                 self?.cityName = coordinates.placeName
                 print("this is the \(coordinates) information")
             }
@@ -91,7 +109,6 @@ class MainViewController: UIViewController {
             
 
 extension MainViewController: UICollectionViewDataSource{
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         weekForecasts.count
     }
@@ -104,13 +121,13 @@ extension MainViewController: UICollectionViewDataSource{
         cell.configureCell(for: forecast)
                 return cell
     }
-    
 }
 
 extension MainViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         zipCode = textField.text ?? "11230"
         zipTextField.resignFirstResponder()
+        backgroundImg()
         return true
     }
 }
