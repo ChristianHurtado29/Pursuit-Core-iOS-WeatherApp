@@ -12,6 +12,6 @@ struct Pix: Codable{
     let hits: [Pictures]
 }
 
-struct Pictures: Codable {
+struct Pictures: Codable, Equatable {
     let largeImageURL: String
 }

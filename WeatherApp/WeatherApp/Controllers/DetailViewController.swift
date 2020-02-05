@@ -9,12 +9,14 @@
 import UIKit
 import ImageKit
 import NetworkHelper
+import DataPersistence
 
 class DetailViewController: UIViewController {
     
     var cityname: String?
     var forecast: Data?
     var url: String?
+    var dataPersistence = DataPersistence<String>(filename: "photos")
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var summaryLabel: UILabel!
@@ -26,7 +28,6 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var precipLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,22 +51,38 @@ class DetailViewController: UIViewController {
             case .success(let Pictures):
                 DispatchQueue.main.async {
                     self.imageView.getImage(with: Pictures.first!.largeImageURL) { (result) in
-                              switch result {
-                              case .failure:
-                                  DispatchQueue.main.async {
-                                      self.imageView.image = UIImage(systemName: "exclaimationmark-triangle")
-                                      print("failed image")
-                                  }
-                              case .success(let image):
-                                  DispatchQueue.main.async {
-                                      self.imageView.image = image
-                                      print("success image")
-                                  }
-                              }
-                          }
+                        switch result {
+                        case .failure:
+                            DispatchQueue.main.async {
+                                self.imageView.image = UIImage(systemName: "exclaimationmark-triangle")
+                                print("failed image")
+                            }
+                        case .success(let image):
+                            DispatchQueue.main.async {
+                                self.imageView.image = image
+                                print("success image")
+                            }
+                        }
+                    }
                 }
             }
         }
-      
     }
+    
+    @IBAction func favesButton(_ sender: UIBarButtonItem) {
+        
+        do{
+            try dataPersistence.createItem(cityname!)
+            print("Success in saving photo")
+            let showAlert = UIAlertController(title: "Success", message: "Photo saved", preferredStyle: .alert)
+            showAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(showAlert, animated: true)
+        } catch {
+            let showAlert = UIAlertController(title: "Failed", message: "Photo saved", preferredStyle: .alert)
+            showAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(showAlert, animated: true)
+        }
+    }
+    
+    
 }

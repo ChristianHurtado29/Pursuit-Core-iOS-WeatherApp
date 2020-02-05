@@ -236,7 +236,11 @@
                         <viewLayoutGuide key="safeArea" id="GgG-Jx-PfR"/>
                     </view>
                     <navigationItem key="navigationItem" id="I8n-tN-56I">
-                        <barButtonItem key="rightBarButtonItem" title="Fave" id="DEY-cg-PiX"/>
+                        <barButtonItem key="rightBarButtonItem" title="Fave" id="DEY-cg-PiX">
+                            <connections>
+                                <action selector="favesButton:" destination="9Ps-Mv-QN8" id="cM9-6z-KLb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundImageView" destination="dzu-ta-Ohe" id="GnW-Gj-6Ar"/>
