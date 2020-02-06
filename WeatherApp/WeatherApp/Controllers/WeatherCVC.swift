@@ -15,7 +15,7 @@ class WeatherCVC: UICollectionViewCell {
     @IBOutlet weak var lowLabel: UILabel!
     @IBOutlet weak var weatherImage: UIImageView!
     
-    func configureCell(for data: Data){
+    func configureCell(for data: WeatherData){
         dateLabel.text = data.time.convertDate()
         hiLabel.text = "High: \(data.temperatureHigh.description)°F"
         lowLabel.text = "Low: \(data.temperatureLow.description)°F"

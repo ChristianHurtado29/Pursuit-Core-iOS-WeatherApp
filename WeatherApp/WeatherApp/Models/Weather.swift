@@ -15,10 +15,10 @@ struct Weather: Codable {
 }
 
 struct Daily: Codable {
-    let data: [Data]
+    let data: [WeatherData]
 }
 
-struct Data: Codable {
+struct WeatherData: Codable {
     let summary: String
     let time: Int
     let sunriseTime: Int

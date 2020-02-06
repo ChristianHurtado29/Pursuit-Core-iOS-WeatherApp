@@ -22,7 +22,6 @@ class MainViewController: UIViewController {
     
     var cityName = String() {
         didSet {
-            //          backgroundImg()
         }
     }
     
@@ -33,7 +32,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    var weekForecasts = [Data](){
+    var weekForecasts = [WeatherData](){
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -55,7 +54,6 @@ class MainViewController: UIViewController {
                             self.backgroundImgView.image = image
                         }
                     }
-                    
                 })
             }
         }
@@ -66,13 +64,14 @@ class MainViewController: UIViewController {
         collectionView.backgroundColor = .gray
         collectionView.alpha = CGFloat(0.7)
         cityLabel.text = ""
+        cityLabel.backgroundColor = .lightGray
+        cityLabel.alpha = 0.7
         zipcodeLabel.text = "Please enter your zipcode"
         zipcodeLabel.backgroundColor = .lightGray
         zipcodeLabel.alpha = CGFloat(0.79)
         collectionView.dataSource = self
         zipTextField.delegate = self
         backgroundImgView.image = #imageLiteral(resourceName: "weatherBack")
-        //     backgroundImg()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,19 +87,6 @@ class MainViewController: UIViewController {
         detailedVC.forecast = weekForecasts[indexPath.row]
     }
     
-    //    func backgroundImg(){
-    //        if cityName == "New York"{
-    //            backgroundImgView.image = UIImage(named: "New York")
-    //        } else if cityName == "Miami"{
-    //            backgroundImgView.image = UIImage(named: "Miami")
-    //        } else if cityName == "Seattle"{
-    //        backgroundImgView.image = UIImage(named: "Seattle")
-    //        } else if cityName == "Los Angeles"{
-    //            backgroundImgView.image = UIImage(named: "Los Angeles")
-    //        }   else {
-    //            backgroundImgView.image = #imageLiteral(resourceName: "weatherBack")
-    //        }
-    //}
     
     public func getCoords(_ zip: String){
         ZipCodeHelper.getLatLongName(fromZipCode: zip) { [weak self] (result) in
@@ -114,7 +100,6 @@ class MainViewController: UIViewController {
                 DispatchQueue.main.async {
                     self?.getPhotos(for: coordinates.placeName)
                     self?.cityName = coordinates.placeName
-                    
                 }
                 print("this is the \(coordinates) information")
             }
@@ -166,7 +151,6 @@ extension MainViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         zipCode = textField.text ?? "11230"
         zipTextField.resignFirstResponder()
-        //       backgroundImg()
         return true
     }
 }
