@@ -12,6 +12,8 @@ class FavesViewController: UIViewController {
     
     
     private let favesView = FavesView()
+    
+    
     var faves = [Pictures?](){
         didSet{
             DispatchQueue.main.async {
@@ -28,25 +30,23 @@ class FavesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadView()
-        
-    //    favesView.favesCollection.dataSource = self
-        //  favesView.favesCollection.delegate = self
-        
-        
+        favesView.favesCollection.dataSource = self
     }
     
 }
 
-//extension FavesViewController: UICollectionViewDataSource{
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        faves.count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
+extension FavesViewController: UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        faves.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = favesView.favesCollection.dequeueReusableCell(withReuseIdentifier: "FavesCell", for: indexPath) as? FavesCellController
+        let fave = faves[indexPath.row]
+//        cell?.configureCell(for: fave)
+        return cell!
+    }
     
     
-//}
 
-// extension FavesViewController: UICollectionview
+}

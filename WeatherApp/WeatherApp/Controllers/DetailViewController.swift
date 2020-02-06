@@ -70,7 +70,6 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func favesButton(_ sender: UIBarButtonItem) {
-        
         do{
             try dataPersistence.createItem(cityname!)
             print("Success in saving photo")

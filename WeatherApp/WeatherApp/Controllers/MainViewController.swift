@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import ImageKit
+
 
 class MainViewController: UIViewController {
     
@@ -20,7 +22,7 @@ class MainViewController: UIViewController {
     
     var cityName = String() {
         didSet {
-            backgroundImg()
+            //          backgroundImg()
         }
     }
     
@@ -39,6 +41,26 @@ class MainViewController: UIViewController {
         }
     }
     
+    var photos = [Pictures](){
+        didSet {
+            DispatchQueue.main.async {
+                self.backgroundImgView.getImage(with: self.photos.first?.largeImageURL ?? "flowers", completion: { (result) in
+                    switch result {
+                    case .failure:
+                        DispatchQueue.main.async {
+                            self.backgroundImgView.image = UIImage(named: "flowers")
+                        }
+                    case .success(let image):
+                        DispatchQueue.main.async {
+                            self.backgroundImgView.image = image
+                        }
+                    }
+                    
+                })
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundColor = .gray
@@ -50,12 +72,12 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         zipTextField.delegate = self
         backgroundImgView.image = #imageLiteral(resourceName: "weatherBack")
-        backgroundImg()
+        //     backgroundImg()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
-        backgroundImg()
+        //     backgroundImg()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,19 +88,19 @@ class MainViewController: UIViewController {
         detailedVC.forecast = weekForecasts[indexPath.row]
     }
     
-    func backgroundImg(){
-        if cityName == "New York"{
-            backgroundImgView.image = UIImage(named: "New York")
-        } else if cityName == "Miami"{
-            backgroundImgView.image = UIImage(named: "Miami")
-        } else if cityName == "Seattle"{
-        backgroundImgView.image = UIImage(named: "Seattle")
-        } else if cityName == "Los Angeles"{
-            backgroundImgView.image = UIImage(named: "Los Angeles")
-        }   else {
-            backgroundImgView.image = #imageLiteral(resourceName: "weatherBack")
-        }
-}
+    //    func backgroundImg(){
+    //        if cityName == "New York"{
+    //            backgroundImgView.image = UIImage(named: "New York")
+    //        } else if cityName == "Miami"{
+    //            backgroundImgView.image = UIImage(named: "Miami")
+    //        } else if cityName == "Seattle"{
+    //        backgroundImgView.image = UIImage(named: "Seattle")
+    //        } else if cityName == "Los Angeles"{
+    //            backgroundImgView.image = UIImage(named: "Los Angeles")
+    //        }   else {
+    //            backgroundImgView.image = #imageLiteral(resourceName: "weatherBack")
+    //        }
+    //}
     
     public func getCoords(_ zip: String){
         ZipCodeHelper.getLatLongName(fromZipCode: zip) { [weak self] (result) in
@@ -86,15 +108,20 @@ class MainViewController: UIViewController {
             case .failure(let zipError):
                 print("get error: \(zipError)")
             case .success(let coordinates):
-                self?.getForecasts(lat: coordinates.lat, long: coordinates.long)
+                self?.getForecasts(lat: coordinates.lat , long: coordinates.long)
                 self?.cityLabel.text = "This week in \(coordinates.placeName)"
                 self?.cityName = coordinates.placeName
+                DispatchQueue.main.async {
+                    self?.getPhotos(for: coordinates.placeName)
+                    self?.cityName = coordinates.placeName
+                    
+                }
                 print("this is the \(coordinates) information")
             }
         }
     }
-       public func getForecasts(lat: Double, long: Double) {
-            WeatherAPI.getForecast(lat: lat, long: long) { [weak self] (result) in
+    public func getForecasts(lat: Double, long: Double) {
+        WeatherAPI.getForecast(lat: lat, long: long) { [weak self] (result) in
             switch result {
             case .failure(let appError):
                 print("get weather error: \(appError)")
@@ -105,8 +132,20 @@ class MainViewController: UIViewController {
             }
         }
     }
+    
+    func getPhotos(for search: String){
+        PicturesAPI.loadPictures(for: search) { (result) in
+            switch result {
+            case .failure(let appError):
+                print("error \(appError)")
+            case .success(let pictures):
+                print("Success")
+                self.photos = pictures
+            }
+        }
+    }
 }
-            
+
 
 extension MainViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -119,7 +158,7 @@ extension MainViewController: UICollectionViewDataSource{
         }
         let forecast = weekForecasts[indexPath.row]
         cell.configureCell(for: forecast)
-                return cell
+        return cell
     }
 }
 
@@ -127,7 +166,7 @@ extension MainViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         zipCode = textField.text ?? "11230"
         zipTextField.resignFirstResponder()
-        backgroundImg()
+        //       backgroundImg()
         return true
     }
 }
