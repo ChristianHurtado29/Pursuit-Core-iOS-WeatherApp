@@ -70,6 +70,7 @@ class MainViewController: UIViewController {
         zipcodeLabel.backgroundColor = .lightGray
         zipcodeLabel.alpha = CGFloat(0.79)
         collectionView.dataSource = self
+        collectionView.delegate = self
         zipTextField.delegate = self
         backgroundImgView.image = #imageLiteral(resourceName: "weatherBack")
     }
@@ -145,6 +146,10 @@ extension MainViewController: UICollectionViewDataSource{
         cell.configureCell(for: forecast)
         return cell
     }
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+
 }
 
 extension MainViewController: UITextFieldDelegate{

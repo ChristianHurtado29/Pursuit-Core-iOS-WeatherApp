@@ -43,7 +43,6 @@ extension FavesViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = favesView.favesCollection.dequeueReusableCell(withReuseIdentifier: "FavesCell", for: indexPath) as? FavesCellController
         let fave = faves[indexPath.row]
-//        cell?.configureCell(for: fave)
         return cell!
     }
     

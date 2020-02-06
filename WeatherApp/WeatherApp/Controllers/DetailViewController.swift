@@ -83,27 +83,23 @@ class DetailViewController: UIViewController {
         }
     }
     
-    @IBAction func favesButton(_ sender: UIBarButtonItem) {
-        
+    
+    @IBAction func saveButton(_ sender: UIButton) {
         if let image = imageView.image{
-            if let imageData = image.jpegData(compressionQuality: 0.5){
-                do{
-                    try dataPersistence.createItem(Favorites(image: imageData))
-                    print("Success in saving photo")
-                    let showAlert = UIAlertController(title: "Success", message: "Photo saved", preferredStyle: .alert)
-                    showAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                    self.present(showAlert, animated: true)
-                } catch {
-                    let showAlert = UIAlertController(title: "Failed", message: "Photo saved", preferredStyle: .alert)
-                    showAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                    self.present(showAlert, animated: true)
+                if let imageData = image.jpegData(compressionQuality: 0.5){
+                    do{
+                        try dataPersistence.createItem(Favorites(image: imageData))
+                        print("Success in saving photo")
+                        let showAlert = UIAlertController(title: "Success", message: "Photo saved", preferredStyle: .alert)
+                        showAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        self.present(showAlert, animated: true)
+                    } catch {
+                        let showAlert = UIAlertController(title: "Failed", message: "Photo saved", preferredStyle: .alert)
+                        showAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        self.present(showAlert, animated: true)
+                    }
                 }
             }
         }
     }
     
-    
-    
-    
-    
-}
