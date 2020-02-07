@@ -22,17 +22,12 @@ class WeatherTabController: UITabBarController {
     
     private lazy var favesViewController: FavesViewController = {
         let VC = FavesViewController()
-//        guard let VC = favesVC.instantiateViewController(identifier: "FavesViewController") as? FavesViewController else {
-//            fatalError("could not load this")
-//        }
         VC.tabBarItem = UITabBarItem(title: "Favorites", image: UIImage(systemName: "2.circle"), tag: 1)
         return VC
     }()
     
-
    override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
         loadTabBar()
     }
     

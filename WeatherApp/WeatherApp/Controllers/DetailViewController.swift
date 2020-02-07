@@ -86,7 +86,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func saveButton(_ sender: UIButton) {
         if let image = imageView.image{
-                if let imageData = image.jpegData(compressionQuality: 0.5){
+                if let imageData = image.jpegData(compressionQuality: 0.99){
                     do{
                         try dataPersistence.createItem(Favorites(image: imageData))
                         print("Success in saving photo")

@@ -12,22 +12,32 @@ import NetworkHelper
 
 class FavesCellController: UICollectionViewCell {
     
-    @IBOutlet weak var imageView: UIImageView!
+    public lazy var imageView: UIImageView = {
+        let image = UIImageView()
+      
+        return image
+    }()
     
-    func configureCell(for cityName: String){
-        imageView.getImage(with: cityName) { (result) in
-        switch result {
-        case .failure:
-            DispatchQueue.main.async {
-                self.imageView.image = UIImage(systemName: "exclaimationmark-triangle")
-                print("failed image")
-            }
-        case .success(let image):
-            DispatchQueue.main.async {
-                self.imageView.image = image
-                print("success image")
-            }
-        }
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+        constrainingImageView()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        constrainingImageView()
+    }
+    
+    func constrainingImageView(){
+        addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
+            imageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            imageView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: 400),
+            imageView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 0),
+            
+        ])
     }
 }
-}
+
