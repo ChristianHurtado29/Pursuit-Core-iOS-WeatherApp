@@ -210,24 +210,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uqu-Oa-ZuE">
-                                <rect key="frame" x="155" y="794" width="104" height="38"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="Save Photo"/>
-                                <connections>
-                                    <action selector="saveButton:" destination="9Ps-Mv-QN8" eventType="touchUpInside" id="e1K-p1-cxq"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="3YZ-gv-ZMq" firstAttribute="leading" secondItem="HtQ-Ey-5if" secondAttribute="leading" id="3i0-tv-Ick"/>
                             <constraint firstItem="GgG-Jx-PfR" firstAttribute="trailing" secondItem="jFX-28-qEM" secondAttribute="trailing" constant="20" id="4gA-s6-H0t"/>
                             <constraint firstItem="olj-Nd-P9x" firstAttribute="top" secondItem="E6w-Fb-5EK" secondAttribute="bottom" constant="8" id="4pE-fJ-99J"/>
-                            <constraint firstItem="GgG-Jx-PfR" firstAttribute="trailing" secondItem="Uqu-Oa-ZuE" secondAttribute="trailing" constant="155" id="7wC-U2-2ll"/>
                             <constraint firstItem="3YZ-gv-ZMq" firstAttribute="trailing" secondItem="HtQ-Ey-5if" secondAttribute="trailing" id="8gJ-tZ-Vm8"/>
                             <constraint firstItem="3YZ-gv-ZMq" firstAttribute="trailing" secondItem="olj-Nd-P9x" secondAttribute="trailing" id="A4F-cq-Bru"/>
-                            <constraint firstItem="Uqu-Oa-ZuE" firstAttribute="leading" secondItem="GgG-Jx-PfR" secondAttribute="leading" constant="155" id="Dx4-wc-pRH"/>
                             <constraint firstItem="3YZ-gv-ZMq" firstAttribute="top" secondItem="olj-Nd-P9x" secondAttribute="bottom" constant="8.5" id="Emv-yW-2jt"/>
                             <constraint firstItem="Skf-Tn-yuO" firstAttribute="top" secondItem="MqG-eh-TiN" secondAttribute="bottom" constant="8" id="Ey6-Er-CGa"/>
                             <constraint firstItem="E6w-Fb-5EK" firstAttribute="leading" secondItem="GgG-Jx-PfR" secondAttribute="leading" constant="20" id="FCT-1g-vJi"/>
@@ -254,14 +244,17 @@
                             <constraint firstItem="7ut-hW-IVZ" firstAttribute="top" secondItem="GgG-Jx-PfR" secondAttribute="top" constant="80" id="qyp-S2-XHu"/>
                             <constraint firstItem="dzu-ta-Ohe" firstAttribute="trailing" secondItem="GgG-Jx-PfR" secondAttribute="trailing" id="uYv-XV-aW2"/>
                             <constraint firstAttribute="bottom" secondItem="3YZ-gv-ZMq" secondAttribute="bottom" constant="156.5" id="ukn-HK-xct"/>
-                            <constraint firstItem="GgG-Jx-PfR" firstAttribute="bottom" secondItem="Uqu-Oa-ZuE" secondAttribute="bottom" constant="30" id="vuv-Ga-max"/>
                             <constraint firstItem="Uf0-H0-MSj" firstAttribute="trailing" secondItem="GgG-Jx-PfR" secondAttribute="trailing" id="xAB-82-eV1"/>
                             <constraint firstItem="GgG-Jx-PfR" firstAttribute="trailing" secondItem="E6w-Fb-5EK" secondAttribute="trailing" constant="20" id="xZx-9Z-Ed2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GgG-Jx-PfR"/>
                     </view>
                     <navigationItem key="navigationItem" id="I8n-tN-56I">
-                        <barButtonItem key="rightBarButtonItem" title="Fave" id="DEY-cg-PiX"/>
+                        <barButtonItem key="rightBarButtonItem" title="Fave" id="DEY-cg-PiX">
+                            <connections>
+                                <action selector="faveButton:" destination="9Ps-Mv-QN8" id="YVR-Nq-Cqh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundImageView" destination="dzu-ta-Ohe" id="GnW-Gj-6Ar"/>

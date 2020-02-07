@@ -32,7 +32,7 @@ class WeatherTabController: UITabBarController {
     }
     
     private func loadTabBar() {
-        viewControllers = [mainViewController, favesViewController]
+        viewControllers = [UINavigationController(rootViewController:mainViewController), favesViewController]
     }
     
 }

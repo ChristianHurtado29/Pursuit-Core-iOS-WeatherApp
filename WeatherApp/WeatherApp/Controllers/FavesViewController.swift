@@ -31,7 +31,7 @@ class FavesViewController: UIViewController {
         getFaves()
         favesView.favesCollection.dataSource = self
         favesView.favesCollection.delegate = self
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .white
     }
     
     

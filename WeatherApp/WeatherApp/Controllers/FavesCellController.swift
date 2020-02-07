@@ -14,7 +14,7 @@ class FavesCellController: UICollectionViewCell {
     
     public lazy var imageView: UIImageView = {
         let image = UIImageView()
-      
+
         return image
     }()
     
@@ -30,6 +30,7 @@ class FavesCellController: UICollectionViewCell {
     
     func constrainingImageView(){
         addSubview(imageView)
+        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
