@@ -250,7 +250,7 @@
                         <viewLayoutGuide key="safeArea" id="GgG-Jx-PfR"/>
                     </view>
                     <navigationItem key="navigationItem" id="I8n-tN-56I">
-                        <barButtonItem key="rightBarButtonItem" title="Fave" id="DEY-cg-PiX">
+                        <barButtonItem key="rightBarButtonItem" title="Fave" image="viewfinder.circle.fill" catalog="system" id="DEY-cg-PiX">
                             <connections>
                                 <action selector="faveButton:" destination="9Ps-Mv-QN8" id="YVR-Nq-Cqh"/>
                             </connections>
@@ -292,4 +292,7 @@
             <point key="canvasLocation" x="1957.9710144927537" y="114.50892857142857"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="viewfinder.circle.fill" catalog="system" width="64" height="60"/>
+    </resources>
 </document>

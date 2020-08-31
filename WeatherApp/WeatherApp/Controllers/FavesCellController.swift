@@ -14,6 +14,7 @@ class FavesCellController: UICollectionViewCell {
     
     public lazy var imageView: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFit
 
         return image
     }()
