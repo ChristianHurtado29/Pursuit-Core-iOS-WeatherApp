@@ -15,7 +15,7 @@ struct PicturesAPI {
     static func loadPictures(for searchQuery: String,
                              completion: @escaping (Result<[Pictures], AppError>) -> ()) {
         
-        let apiKey = "14968421-bdbbdb0f044ae1bfcb38ea89d&q"
+        let apiKey = Secrets.picturesKey
         
         let searchQuery = searchQuery.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "yellow"
         
