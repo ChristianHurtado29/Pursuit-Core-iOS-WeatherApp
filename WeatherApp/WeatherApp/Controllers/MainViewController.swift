@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var backgroundImgView: UIImageView!
     
+    var currentZip = "11230"
     
     var cityName = String() {
         didSet {
@@ -27,8 +28,9 @@ class MainViewController: UIViewController {
     
     private var zipCode = String() {
         didSet {
+//            zipTextField.text = currentZip
+            UserPreference.shared.updateZipCode(with: Int(zipCode) ?? 90210)
             getCoords(zipCode)
-            print(zipCode)
         }
     }
     
@@ -73,6 +75,16 @@ class MainViewController: UIViewController {
         collectionView.delegate = self
         zipTextField.delegate = self
         backgroundImgView.image = #imageLiteral(resourceName: "weatherBack")
+        updateUI()
+    }
+    
+    private func updateUI(){
+        // retrieving default values in UserDefaults
+        if let zip = UserPreference.shared.getZipCode() {
+            currentZip = zip.description
+            zipTextField.text = currentZip
+            getCoords(currentZip)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -155,6 +167,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
 extension MainViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         zipCode = textField.text ?? "11230"
+        currentZip = textField.text!
         zipTextField.resignFirstResponder()
         return true
     }
